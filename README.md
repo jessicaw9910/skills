@@ -19,7 +19,42 @@ Skills live under `.claude/skills/<name>/SKILL.md`:
 
 ## Usage
 
-Copy a skill directory into another project's `.claude/skills/` to make it
-available there, or reference these as a starting point when setting up a new
-repo. Each `SKILL.md` has YAML frontmatter (`name`, `description`) that tells
-Claude Code when the skill is relevant.
+Each `SKILL.md` has YAML frontmatter (`name`, `description`) that tells Claude
+Code when the skill is relevant. There are two ways to consume these skills in
+another project.
+
+### Option A — copy / vendor
+
+Copy a skill directory into the project's `.claude/skills/`. The content is
+always present in context when the skill triggers, works offline, and is shared
+with collaborators via the repo. The trade-off is that it's a **copy**: it
+drifts from this repo until you re-sync it by hand.
+
+### Option B — reference (fetch on demand)
+
+Keep a thin local skill in the project's `.claude/skills/` that holds only the
+repo-specific additions and tells Claude to `WebFetch` the canonical version
+here, e.g.:
+
+```
+https://raw.githubusercontent.com/jessicaw9910/skills/main/.claude/skills/<name>/SKILL.md
+```
+
+This keeps a single source of truth. See `missense-kinase-toolkit` and
+`mkt_impact` for working examples.
+
+**Caveats (all attendant):**
+
+- **Claude Code does not follow links in a `SKILL.md` automatically.** The local
+  file must *explicitly* instruct a `WebFetch`, or the baseline never loads.
+- **Fetch-on-demand isn't guaranteed.** Claude may apply only the local
+  repo-specific notes and skip the fetch. Have the local skill instruct it to
+  **notify you if the fetch fails** rather than silently proceeding.
+- **Needs network + the `WebFetch` tool permitted**, and adds some latency.
+- **URLs resolve only against what's committed.** The `main` raw URLs 404 until
+  the referenced skill is merged to `main` (pin a branch/tag/commit SHA in the
+  URL if you need to reference unmerged or versioned content).
+- **No version pinning by default.** Referencing `main` means the project tracks
+  whatever `main` currently says; use a tag or commit SHA in the URL to pin.
+- **Collaborators** get the local thin skill from the repo, but the fetched
+  baseline depends on this repo staying public and reachable.
