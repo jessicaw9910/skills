@@ -1,0 +1,88 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# dotenv
+.env
+
+# virtualenv
+.venv
+venv/
+ENV/
+VE/
+
+# Sphinx / mkdocs
+docs/_build/
+/site
+
+# mypy
+.mypy_cache/
+
+# In-tree generated version files (setuptools-scm etc.)
+*/_version.py
+
+# local caches / scratch data
+requests_cache*
+*.sqlite
+*params.json
+
+# generated analysis outputs — don't version-control
+images/
+data/
+configs/
+
+# OS junk
+.DS_Store
+*/.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+*~
+
+# Claude Code working files, but KEEP version-controlled project skills
+.claude/*
+# but keep version-controlled project skills so they're shared/reusable
+!.claude/skills/
