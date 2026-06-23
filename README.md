@@ -20,6 +20,7 @@ Skills live under `.claude/skills/<name>/SKILL.md`:
 | [`packaging-data`](.claude/skills/packaging-data/SKILL.md) | shipping non-`.py` files — `MANIFEST.in graft` (sdist) vs `package-data` (wheel), the dotted-package-name key gotcha, and pruning caches `graft` sweeps in |
 | [`codecov`](.claude/skills/codecov/SKILL.md) | `.codecov.yml` for path-filtered monorepo CI — per-flag carryforward, project/patch status targets, per-flag target overrides, ignore paths, PR comment layout |
 | [`release`](.claude/skills/release/SKILL.md) | cutting a release — tag the clean commit, tag-triggered build + publish to PyPI via OIDC trusted publishing, monorepo multi-dist builds, install-from-git fallback |
+| [`readme`](.claude/skills/readme/SKILL.md) | README skeleton — badge block (DOI/codecov/docs/pre-commit/per-package CI/app), monorepo sub-package table, git-subdirectory install, cookiecutter footer |
 | [`gitignore`](.claude/skills/gitignore/SKILL.md) | generating a Python `.gitignore` from the MolSSI cookiecutter base plus personal add-ons |
 | [`versioning`](.claude/skills/versioning/SKILL.md) | git-tag-derived package versioning with versioningit — dynamic version, `importlib.metadata` at runtime, PEP 440 local versions, releasing by tag, monorepo tag namespaces |
 
