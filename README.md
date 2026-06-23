@@ -15,6 +15,7 @@ Skills live under `.claude/skills/<name>/SKILL.md`:
 | [`formatting`](.claude/skills/formatting/SKILL.md) | Python style — import grouping, NumPy-style docstrings, trailing-docstring constants, lowercase comments, double quotes |
 | [`tests`](.claude/skills/tests/SKILL.md) | pytest conventions — network marker, token-gated skips, session/module fixtures, xdist safety |
 | [`ci`](.claude/skills/ci/SKILL.md) | GitHub Actions + pre-commit — path-filtered per-package workflows, conda/micromamba env, OS/Python matrix, Codecov flags |
+| [`docs`](.claude/skills/docs/SKILL.md) | building/regenerating Sphinx API docs in MolSSI cookiecutter-cms projects — autosummary + autodoc + napoleon (NumPy docstrings), recursive templates, `make html`, Read the Docs |
 | [`gitignore`](.claude/skills/gitignore/SKILL.md) | generating a Python `.gitignore` from the MolSSI cookiecutter base plus personal add-ons |
 
 ## Usage
