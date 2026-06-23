@@ -16,6 +16,7 @@ Skills live under `.claude/skills/<name>/SKILL.md`:
 | [`tests`](.claude/skills/tests/SKILL.md) | pytest conventions — network marker, token-gated skips, session/module fixtures, xdist safety |
 | [`ci`](.claude/skills/ci/SKILL.md) | GitHub Actions + pre-commit — path-filtered per-package workflows, conda/micromamba env, OS/Python matrix, Codecov flags |
 | [`docs`](.claude/skills/docs/SKILL.md) | building/regenerating Sphinx API docs in MolSSI cookiecutter-cms projects — autosummary + autodoc + napoleon (NumPy docstrings), recursive templates, `make html`, Read the Docs |
+| [`packaging`](.claude/skills/packaging/SKILL.md) | setuptools/pyproject distribution layout — dynamic version, extras, console scripts, and the monorepo pattern: many sub-distributions sharing a PEP 420 `mkt` namespace (no top-level `__init__.py`) with `graft`-ing MANIFEST.in |
 | [`gitignore`](.claude/skills/gitignore/SKILL.md) | generating a Python `.gitignore` from the MolSSI cookiecutter base plus personal add-ons |
 | [`versioning`](.claude/skills/versioning/SKILL.md) | git-tag-derived package versioning with versioningit — dynamic version, `importlib.metadata` at runtime, PEP 440 local versions, releasing by tag, monorepo tag namespaces |
 
