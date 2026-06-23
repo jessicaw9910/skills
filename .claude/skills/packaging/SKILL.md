@@ -127,8 +127,8 @@ the `mkt/__init__.py`.
 
 ### Per-distribution `MANIFEST.in`
 
-Each sub-distribution carries its own `MANIFEST.in` to pull non-`.py` files
-(data, the license) into the sdist/wheel:
+Each sub-distribution carries its own `MANIFEST.in` that `graft mkt`s the shared
+namespace dir so non-`.py` files (data, the license) ship in the sdist/wheel:
 
 ```
 include LICENSE
@@ -137,11 +137,10 @@ graft mkt
 global-exclude *.py[cod] __pycache__ *.so
 ```
 
-- **`graft mkt`** recursively includes everything under the shared namespace dir
-  — this is how package data (CSV/JSON/`.dat`, templates) ships. Without it,
-  only `.py` files make it in.
-- The repo-**root** `MANIFEST.in` is minimal (e.g. `include CODE_OF_CONDUCT.md`)
-  since the root isn't a distribution.
+The repo-**root** `MANIFEST.in` is minimal (e.g. `include CODE_OF_CONDUCT.md`)
+since the root isn't a distribution. For the full story on shipping data files —
+the wheel-side `package-data` key, the dotted-name gotcha, and pruning caches
+that `graft` sweeps in — see [[packaging-data]].
 
 ### Inter-package dependencies
 
