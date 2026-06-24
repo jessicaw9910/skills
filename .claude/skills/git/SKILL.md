@@ -28,6 +28,10 @@ description: >-
 
 ## Pull requests
 
+- **Title** with a scope prefix and an imperative one-liner:
+  `<scope>: <summary>`, where `<scope>` is the topic branch / sub-package the PR
+  comes from (e.g. `schema: Add module-level docstrings`,
+  `databases: Cache OncoKB responses`). Keep it short; detail goes in the body.
 - **If `.github/PULL_REQUEST_TEMPLATE.md` exists**, use it: fill in every
   section and leave the Status box reflecting the true state.
 - **If it does not exist**, create `.github/PULL_REQUEST_TEMPLATE.md` with the
