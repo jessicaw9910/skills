@@ -2,8 +2,9 @@
 name: formatting
 description: >-
   Personal Python code style (import grouping/order, NumPy-style docstrings,
-  trailing-docstring module constants, lowercase comments, double-quoted
-  strings). Use whenever writing or editing any Python code.
+  summary+detail module docstrings, trailing-docstring module constants,
+  lowercase comments, double-quoted strings). Use whenever writing or editing
+  any Python code.
 ---
 
 # Python code formatting
@@ -56,6 +57,28 @@ def my_function(param1: str, param2: int) -> bool:
         Description of return value.
     """
 ```
+
+## Module-level docstrings
+
+Every module starts with a docstring (a triple-quoted string as the first
+statement; in a script it goes immediately after the `#!` shebang). Write it as
+a **one-line summary**, a blank line, then a short detail paragraph — the
+summary is what `autosummary` shows in the package landing-page table, and the
+full docstring renders on the module's own page. Use NumPy-style `:role:` cross-
+references (``:class:``, ``:func:``, ``:mod:``) to the module's key public
+symbols so they link in the rendered docs.
+
+```python
+#!/usr/bin/env python
+"""One-line summary of what the module provides.
+
+Detail paragraph naming the key public symbols, e.g. :class:`MyClient` and
+:func:`my_helper`, and how they fit together.
+"""
+```
+
+A bare one-liner is acceptable for trivial modules, but prefer the summary +
+detail form so both the table and the landing page are useful.
 
 ## Module-level constants
 
