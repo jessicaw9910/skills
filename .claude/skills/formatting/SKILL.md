@@ -3,8 +3,8 @@ name: formatting
 description: >-
   Personal Python code style (import grouping/order, NumPy-style docstrings,
   summary+detail module docstrings, trailing-docstring module constants,
-  lowercase comments, double-quoted strings). Use whenever writing or editing
-  any Python code.
+  naming/type-prefix conventions, lowercase comments, double-quoted strings).
+  Use whenever writing or editing any Python code.
 ---
 
 # Python code formatting
@@ -33,6 +33,32 @@ import matplotlib.pyplot as plt
 
 from my_package.schema import DataLoader
 from my_package.constants import AttrType
+```
+
+## Naming
+
+- **Case**: `lower_snake_case` for variables, parameters, and functions;
+  `UPPER_SNAKE_CASE` for hardcoded constants. The one exception is `argparse`
+  flags, which use `lowerCamelCase` (e.g. `--inputFile`). Typer parameters are
+  **not** an exception — keep them `lower_snake_case`.
+- **Type prefix**: when a variable, parameter, or flag holds a simple scalar
+  type (`str`, `int`, `float`, `bool`, …), prepend the type to the name so the
+  type is visible at the use site: `str_filename`, `int_count`,
+  `float_threshold`, `bool_verbose`. This applies to the simple builtins only —
+  don't prefix containers, dataclasses, dataframes, or other complex types.
+
+```python
+# preferred
+str_path = "data.csv"
+int_n_bins = 10
+float_cutoff = 0.05
+
+DICT_SCORE_KEY = {...}  # constant stays UPPER_SNAKE_CASE
+
+parser.add_argument("--inputFile")  # argparse: lowerCamelCase flag
+
+def main(str_input: str = typer.Option(...)):  # Typer: lower_snake_case
+    ...
 ```
 
 ## Docstrings
