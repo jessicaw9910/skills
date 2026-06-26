@@ -10,7 +10,32 @@ description: >-
 # Plotting conventions
 
 Apply these whenever you create or modify a figure. The transparency rule is the
-one that bites repeatedly — treat it as non-negotiable.
+one that bites repeatedly — treat it as non-negotiable. These are figures for
+academic publications, which carry robust figure legends and a methods section —
+so the figure itself stays clean and the prose does the explaining.
+
+## Titles
+
+No titles unless explicitly requested. These are publication figures with
+detailed figure legends, so a panel title is redundant clutter. Don't call
+`ax.set_title()` / `plt.title()` / `fig.suptitle()` by default.
+
+## Axis labels
+
+Keep axis labels as simple and self-evident as possible. The reader has the
+methods section, so the label should name the quantity, not document display
+choices.
+
+- Don't annotate an axis-level log scale in the label — if the data is plotted
+  linearly on a log-scaled axis (e.g. `ax.set_yscale("log")`), the log scale is
+  evident from the tick spacing, so just name the quantity (e.g. `expression`).
+- Do reflect a manual data transform in the label — if the data itself was
+  transformed before plotting (e.g. `log10(CPM + 1)`), the label *is* that
+  transformed quantity, so write it out (`log10(CPM + 1)`). The distinction:
+  display scaling stays out of the label; what the values actually are stays in.
+- Prefer the plain quantity name (with units where genuinely needed) over
+  parenthetical methodological detail.
+- Avoid restating in the label anything that belongs in the legend or methods.
 
 ## Font
 
