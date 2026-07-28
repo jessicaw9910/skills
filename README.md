@@ -22,7 +22,7 @@ Skills live under `.claude/skills/<name>/SKILL.md`:
 | [`release`](.claude/skills/release/SKILL.md) | cutting a release — tag the clean commit, tag-triggered build + publish to PyPI via OIDC trusted publishing, monorepo multi-dist builds, install-from-git fallback |
 | [`readme`](.claude/skills/readme/SKILL.md) | README skeleton — badge block (DOI/codecov/docs/pre-commit/per-package CI/app), monorepo sub-package table, git-subdirectory install, cookiecutter footer |
 | [`gitignore`](.claude/skills/gitignore/SKILL.md) | generating a Python `.gitignore` from the MolSSI cookiecutter base plus personal add-ons |
-| [`cluster`](.claude/skills/cluster/SKILL.md) | shared-HPC/Slurm conventions — never compute on a login node, size to measurement, read the real allocation not the node, benchmark hardware instead of assuming bigger is faster, don't hoard scarce resources, dated machine-specific fact snapshots |
+| [`cluster`](.claude/skills/cluster/SKILL.md) | shared-cluster conventions — never compute on a login node, size to measurement, read the real allocation not the node, benchmark hardware instead of assuming bigger is faster, don't hoard scarce resources, dated machine-specific fact snapshots; scheduler-independent practices with Slurm example commands (mapped to LSF/Kubernetes/PBS/HTCondor) |
 | [`versioning`](.claude/skills/versioning/SKILL.md) | git-tag-derived package versioning with versioningit — dynamic version, `importlib.metadata` at runtime, PEP 440 local versions, releasing by tag, monorepo tag namespaces |
 
 ## Usage

@@ -1,22 +1,68 @@
 ---
 name: cluster
 description: >-
-  Shared-HPC (Slurm) conventions — never compute on a login node, size requests
-  to measurement, submit instead of backgrounding, read the real allocation not
-  the node, benchmark hardware rather than assuming bigger is faster, and record
-  machine-specific facts as a dated snapshot. Use before running anything heavier
-  than a shell query on a cluster, or when writing/sizing/submitting batch jobs.
+  Conventions for working on any shared compute cluster — never compute on a
+  login node, size requests to measurement, submit instead of backgrounding, read
+  the real allocation not the node, benchmark hardware rather than assuming
+  bigger is faster, don't hoard scarce resources, and record machine-specific
+  facts as a dated snapshot. The practices are scheduler-independent; the example
+  commands are Slurm (see the mapping for LSF, Kubernetes, PBS, HTCondor). Use
+  before running anything heavier than a shell query on a cluster, or when
+  writing/sizing/submitting batch jobs.
 ---
 
-# Cluster usage (shared HPC, Slurm)
+# Cluster usage (shared compute)
 
 A cluster is a **shared** resource: every over-padded request, every process on a
 login node, and every idle-but-held GPU is taken from someone else. These
-conventions are portable across machines. The *facts* about any particular
-cluster (partition names, GPU types, filesystems, hostnames) are not portable —
-see [Recording machine-specific facts](#recording-machine-specific-facts).
+conventions are portable across machines **and across schedulers** — don't
+compute on the login node, size to measurement, don't hoard scarce hardware,
+checkpoint long work — and they hold whether the site runs Slurm, LSF,
+Kubernetes, or anything else. Only the *commands* below are scheduler-specific,
+and the *facts* about any particular cluster (partition names, GPU types,
+filesystems, hostnames) are not portable at all — see
+[Recording machine-specific facts](#recording-machine-specific-facts).
+
+## Scheduler assumption (commands only)
+
+**Every command below assumes Slurm** (`sbatch`, `srun`, `squeue`, `sinfo`,
+`sacct`, `scontrol`, `scancel`). Slurm is the most common HPC scheduler, but not
+the only one — check what the site actually runs before using any of this
+verbatim. Other schedulers you may meet:
+
+| Scheduler | Submit / run | Queue / status | Node & queue info | Cancel |
+|---|---|---|---|---|
+| **Slurm** | `sbatch`, `srun` | `squeue`, `sacct` | `sinfo`, `scontrol show node` | `scancel` |
+| **IBM Spectrum LSF** | `bsub` | `bjobs`, `bhist` | `bqueues`, `bhosts` | `bkill` |
+| **kube-scheduler** (Kubernetes) | `kubectl apply` (Job/Pod; often via Kueue, Volcano, or Argo Workflows) | `kubectl get jobs/pods`, `kubectl logs` | `kubectl get nodes`, `kubectl describe node` | `kubectl delete job` |
+
+Others still in use include PBS Pro / OpenPBS and Torque (`qsub`, `qstat`,
+`qdel`), Grid Engine (SGE/UGE, same `q*` verbs), and HTCondor (`condor_submit`,
+`condor_q`, `condor_rm`).
+
+Two cautions when translating:
+
+- **Binaries present ≠ scheduler configured.** A site can have `bsub` on `PATH`
+  from a legacy or unconfigured install while jobs actually go through Slurm.
+  Confirm by running the status command, not by checking `which`.
+- **The concepts map only loosely.** Slurm *partitions* are roughly LSF *queues*
+  and Kubernetes *node pools / priority classes*; Slurm's `--gres=gpu:N` is LSF's
+  `-gpu num=N` and Kubernetes' `resources.limits.nvidia.com/gpu`. Kubernetes in
+  particular has no login node and no wall-clock limit by default — but the
+  norms below (right-size requests, read the real allocation, don't hoard scarce
+  accelerators, checkpoint long work) apply unchanged, since `limits`/`requests`
+  play the role of `--mem` / `--cpus-per-task` and a container sees the whole
+  node unless the runtime constrains it.
+
+Everything in this skill that is *not* a command — the norms — is
+scheduler-independent.
 
 ## The one hard rule: never run compute on a login node
+
+This holds on **every** cluster, whatever it calls the machine you land on —
+login node, head node, submit host, bastion, jump box, or the pod you got a
+shell in. If it is the shared entry point rather than an allocation, it is not
+where work runs.
 
 Login nodes are shared, tiny (often 1–2 usable cores), and already loaded by
 everyone else's shell work. Running an analysis, plot, or model there is both
