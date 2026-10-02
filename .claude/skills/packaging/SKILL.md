@@ -145,9 +145,9 @@ that `graft` sweeps in — see [[packaging-data]].
 ### Inter-package dependencies
 
 Sub-distributions depend on each other by **distribution name** in their
-`dependencies` list (e.g. `mkt-databases` lists `"mkt.schema"`). Install in
-dependency order, often `--no-deps` against a conda env that already has the
-third-party deps — see [[ci]] for the CI install order.
+`dependencies` list (e.g. `mkt-databases` lists `"mkt.schema"`). Install them
+together in one `uv pip install ./pkg-a ./pkg-b` so the local paths satisfy each
+other's dependencies — see [[ci]] for the CI install.
 
 ## Adding a new sub-distribution
 
