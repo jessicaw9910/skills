@@ -20,11 +20,16 @@ description: >-
 - In a mono repo, scope each commit to one sub-package where practical
   (CI is often path-filtered per sub-package).
 - Use the `gh` CLI for GitHub operations (PRs, issues, API).
-- End commit messages with:
+- End commit messages with a co-author trailer naming the model that
+  actually wrote the commit (whatever model the session is running on):
 
   ```
-  Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+  Co-Authored-By: Claude <Model> <Version> <noreply@anthropic.com>
   ```
+
+  e.g. `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` or
+  `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`. Never copy a
+  model name from an old commit or example; use the current session's model.
 
 ## Pull requests
 
