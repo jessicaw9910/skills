@@ -27,6 +27,9 @@ description: >-
   Co-Authored-By: Claude <model name and version> <noreply@anthropic.com>
   ```
 
+  e.g. `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` or
+  `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`.
+
 ## Pull requests
 
 - **Title** with a scope prefix and an imperative one-liner:
