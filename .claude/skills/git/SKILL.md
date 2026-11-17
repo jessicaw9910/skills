@@ -20,10 +20,11 @@ description: >-
 - In a mono repo, scope each commit to one sub-package where practical
   (CI is often path-filtered per sub-package).
 - Use the `gh` CLI for GitHub operations (PRs, issues, API).
-- End commit messages with:
+- End commit messages with a trailer naming the Claude model making the commit
+  (don't copy a version from an earlier commit):
 
   ```
-  Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+  Co-Authored-By: Claude <model name and version> <noreply@anthropic.com>
   ```
 
 ## Pull requests
